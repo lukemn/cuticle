@@ -1,6 +1,6 @@
 # The ancestral *C. elegans* cuticle suppresses *rol-1*
 
-![rol-1 tracks](assets/BE8_longest_pretty.png?raw=true)
+![rol-1 tracks](assets/BE8_longest_circgt0.9_pretty.png?raw=true)
 
 This repository contains `R` code and data to reproduce analyses and figures.
 
