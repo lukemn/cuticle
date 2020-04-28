@@ -1,4 +1,5 @@
 require(plyr)
+require(dplyr)
 require(parallel)
 require(sp)
 require(rptR)
@@ -9,9 +10,9 @@ require(sparseLDA)
 np=4 # parallel threads
 
 # raw data (merged from Choreography)
-load('merged_roller_MWT.rda')
+load('S12_merged_roller_MWT.rda')
 # per track summary stats
-load('merged_roller_MWT_trackStat.rda', verbose=T)
+load('S13_merged_roller_MWT_trackStat.rda', verbose=T)
 colo = merge(colo, muts)
 
 # add mutant genotypes, excluding NA
@@ -229,6 +230,7 @@ multivariate_plots <- function(traitx, tres, circm, opref){
   md = cbind(data.frame(md), data.frame(platem[,1:4]))
   md$col.geno = factor(md$col.geno, labels = c('ancestral', 'N2'))
   md$int = as.factor(as.character(md$int))
+  levels(md$int)[1] = 'None'
   md$int = factor(md$int, labels = sprintf('italic("%s")', levels(md$int)))
   p <- ggplot(md, aes(X1, X2, shape=col.geno, col=int)) + geom_point(size=3, stroke=0, alpha=0.75) + theme_classic() + 
     stat_ellipse(aes(linetype=col.geno), level=0.8, size=1.2) + scale_color_brewer('Interaction', type='qual', palette = 2, labels = scales::parse_format()) +
